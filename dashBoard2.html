@@ -157,7 +157,7 @@ var obj;
 fetch('http://10.0.74.239:8080/api2/piechart/2018')
   .then(res => res.json())
   .then(data => obj = data)
-  .then(() => console.log(dsPieChart()))
+  .then(() => dsPieChart())
 
 /*
 ############# PIE CHART ###################
@@ -165,7 +165,6 @@ fetch('http://10.0.74.239:8080/api2/piechart/2018')
 */
 
 function dsPieChart(){
-
 var 	width = 400,
 	   height = 400,
 	   outerRadius = Math.min(width, height) / 2,
@@ -173,7 +172,7 @@ var 	width = 400,
 	   // for animation
 	   innerRadiusFinal = outerRadius * .5,
 	   innerRadiusFinal3 = outerRadius* .45,
-	   color = d3.scale.category10()    //builtin range of colors
+	   color = d3.scale.category20()    //builtin range of colors
 	   ;
 console.log("mulai gambar");
 var vis = d3.select("#pieChart")
@@ -209,7 +208,9 @@ var arcs = vis.selectAll("g.slice")     //this selects all <g> elements with cla
 		   .attr("fill", function(d, i) { return color(i); } ) //set the color for each slice to be chosen from the color function defined above
 		   .attr("d", arc)     //this creates the actual SVG path using the associated data (pie) with the arc drawing function
 				.append("svg:title") //mouseover title showing the figures
-			   .text(function(d) { return d.data.category + ": " + formatAsPercentage(d.data.measure); });			
+			   .text(function(d) { 
+				   console.log(d)
+				   return d.data.categories + ": " + formatAsPercentage(d.data.measure); });			
 
 	d3.selectAll("g.slice").selectAll("path").transition()
 			.duration(750)
@@ -225,7 +226,7 @@ var arcs = vis.selectAll("g.slice")     //this selects all <g> elements with cla
 	  .attr("text-anchor", "middle")
 	  .attr("transform", function(d) { return "translate(" + arcFinal.centroid(d) + ")rotate(" + angle(d) + ")"; })
 	  //.text(function(d) { return formatAsPercentage(d.value); })
-	  .text(function(d) { return d.data.category; })
+	  .text(function(d) { return d.obj.category; })
 	  ;
    
    // Computes the label angle of an arc, converting from radians to degrees.
