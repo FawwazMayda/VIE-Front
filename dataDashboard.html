@@ -21,17 +21,41 @@
 body {
     font-family: 'Lato', sans-serif;
 }
+.header {
+	padding-bottom: 2rem;
+	padding-left: 2rem;
+}
 .c {
   border: solid 1px gray;
-  width: 800px;
+  width: 1200px;
   height: 800px;
-  margin: 150px;
+  margin: 20px;
   padding: 0;
   float: left;
 }
 .select {
 	text-align: center;
-	padding: 100px;
+	padding-top: 120px;
+}
+.line {
+	align-content: center;
+}
+
+.row {
+	align-content: center;
+	padding-left: 15rem;
+	text-align: center;
+	display: inline-block;
+}
+.rowline {
+	align-self: center;
+	padding-left: 12rem;
+	padding-right: 12rem;
+	vertical-align: middle;
+}
+
+#myChart1 {
+	align-content: left;
 }
 
 	</style>
@@ -76,7 +100,7 @@ body {
 </select>
 
 </div>
-	<div class="row">
+	<div class="rowline">
 		<div id="line" class="c"></div>
 	</div>
 	<script src="index.js"type="text/javascript"></script>

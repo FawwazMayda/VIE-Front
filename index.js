@@ -43,11 +43,25 @@ function drawPieChart(d,id){
         "#f1c40f",
         "#e74c3c",
         "#34495e",
+        "#ff4343",
+        "#32A512",
+        "#AB6776",
+        "#2D4322",
+        "#CD7627",
+        "#2F3AA0",
         "#ff4343"
+        
       ],
       data: data
         }]
-    }
+    },
+    options: {
+        legend: {
+            display: true,
+            position: 'left'
+        },
+    },
+    showTooltips: true,
     });
 }
 
@@ -56,7 +70,7 @@ function lineChartDraw(data){
         data: data,
         type: 'line',
         x: 'tahun',
-        y: 'count',
+        y: 'jumlah',
         color: 'jenjang',
         plugins: [
             Taucharts.api.plugins.get('legend')(),
