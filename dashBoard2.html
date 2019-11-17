@@ -226,7 +226,7 @@ var arcs = vis.selectAll("g.slice")     //this selects all <g> elements with cla
 	  .attr("text-anchor", "middle")
 	  .attr("transform", function(d) { return "translate(" + arcFinal.centroid(d) + ")rotate(" + angle(d) + ")"; })
 	  //.text(function(d) { return formatAsPercentage(d.value); })
-	  .text(function(d) { return d.obj.category; })
+	  .text(function(d) { return d.data.categories; })
 	  ;
    
    // Computes the label angle of an arc, converting from radians to degrees.
