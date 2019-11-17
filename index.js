@@ -13,11 +13,12 @@ fetch('http://10.0.74.239:8080/api2/piechart/2019').then(resp => resp.json())
     console.log(d)
     drawPieChart(d,"myChart3")
 })
-fetch('http://10.0.74.239:8080/api2/linechart/TEGALREJO/').then(resp => resp.json())
-.then(d=> {
-    console.log(d)
-    lineChart(d)
-})
+
+fetch('http://10.0.74.239:8080/api2/linechart/TEGALREJO').then(resp => resp.json())
+    .then(d=> {
+        console.log(d)
+        lineChartDraw(d)
+    })
 
 function drawPieChart(d,id){
     var label = []
@@ -50,8 +51,8 @@ function drawPieChart(d,id){
     });
 }
 
-function lineChart(data){
-    new Taucharts.Chart({
+function lineChartDraw(data){
+    var lineChart = new Taucharts.Chart({
         data: data,
         type: 'line',
         x: 'tahun',
@@ -61,5 +62,19 @@ function lineChart(data){
             Taucharts.api.plugins.get('legend')(),
             Taucharts.api.plugins.get('tooltip')()
         ]
-    }).renderTo('#line');
+    })
+
+    lineChart.renderTo('#line');
+}
+
+function myFunc(){
+    var x= document.getElementById("mySelect").value;  
+    document.getElementById("line").innerHTML=""
+    console.log(x)
+    //lineChart.setData(d)
+    fetch('http://10.0.74.239:8080/api2/linechart/'+x+"/").then(resp => resp.json())
+    .then(d=> {
+        console.log(d)
+        lineChartDraw(d)
+    })
 }
