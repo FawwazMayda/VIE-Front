@@ -13,6 +13,11 @@ fetch('http://10.0.74.239:8080/api2/piechart/2019').then(resp => resp.json())
     console.log(d)
     drawPieChart(d,"myChart3")
 })
+fetch('http://10.0.74.239:8080/api2/linechart/TEGALREJO/').then(resp => resp.json())
+.then(d=> {
+    console.log(d)
+    lineChart(d)
+})
 
 function drawPieChart(d,id){
     var label = []
@@ -43,4 +48,16 @@ function drawPieChart(d,id){
         }]
     }
     });
+}
+
+function lineChart(d){
+    var chart = new Taucharts.Chart({
+        data : d,
+        type:'line',
+        x: 'tahun',
+        y: 'count',
+        color : 'jenjang',
+        plugins: [Taucharts.api.plugins.get('legend')]
+    })
+    chart.renderTo("#line")
 }
