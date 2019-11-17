@@ -50,14 +50,16 @@ function drawPieChart(d,id){
     });
 }
 
-function lineChart(d){
-    var chart = new Taucharts.Chart({
-        data : d,
-        type:'line',
+function lineChart(data){
+    new Taucharts.Chart({
+        data: data,
+        type: 'line',
         x: 'tahun',
         y: 'count',
-        color : 'jenjang',
-        plugins: [Taucharts.api.plugins.get('legend')]
-    })
-    chart.renderTo("#line")
+        color: 'jenjang',
+        plugins: [
+            Taucharts.api.plugins.get('legend')(),
+            Taucharts.api.plugins.get('tooltip')()
+        ]
+    }).renderTo('#line');
 }
