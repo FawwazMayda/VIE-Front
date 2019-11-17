@@ -20,7 +20,8 @@
 	<!-- Latest compiled JavaScript -->
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
 
-	<script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+	<script src="plotly-latest.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/numeric/1.2.6/numeric.min.js"></script>
 
     <style type="text/css">
 body {
@@ -39,31 +40,20 @@ body {
 		<div class="col-6 col-md-4" id="pieChart3" style="height: 300px; width: 400px;">pieChart3</div>
 	</div>
 	<script type="text/javascript">
-	
-window.onload = function() {
 
-var obj;
+var data = [{
+  values: [19, 26, 55],
+  labels: ['Residential', 'Non-Residential', 'Utility'],
+  type: 'pie'
+}];
 
-fetch('http://10.0.74.239:8080/api2/piechart/2018')
-  .then(res => res.json())
-  .then(data => obj = data)
-  .then(() => dsPieChart())
+var layout = {
+  height: 400,
+  width: 500
+};
 
-var chart = new CanvasJS.Chart("pieChart1", {
-	animationEnabled: true,
-	title: {
-		text: "Desktop Search Engine Market Share - 2016"
-	},
-	data: [{
-		type: "pie",
-		startAngle: 240,
-		yValueFormatString: "##0.00\"%\"",
-		indexLabel: "{label} {y}",
-		dataPoints: obj
-		]
-	}]
-});
-chart.render();
+Plotly.newPlot('pieChart1', data, layout);
+
 
 var chart2 = new CanvasJS.Chart("pieChart2", {
 	animationEnabled: true,
@@ -76,7 +66,7 @@ var chart2 = new CanvasJS.Chart("pieChart2", {
 		yValueFormatString: "##0.00\"%\"",
 		indexLabel: "{label} {y}",
 		dataPoints: [
-			{y: 79.45, label: "Google"},
+			{measure: 79.45, label: "Google"},
 			{y: 7.31, label: "Bing"},
 			{y: 7.06, label: "Baidu"},
 			{y: 4.91, label: "Yahoo"},
@@ -84,6 +74,7 @@ var chart2 = new CanvasJS.Chart("pieChart2", {
 		]
 	}]
 });
+console.log(chart2)
 chart2.render();
 
 var chart3 = new CanvasJS.Chart("pieChart3", {
