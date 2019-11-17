@@ -209,7 +209,7 @@ var arcs = vis.selectAll("g.slice")     //this selects all <g> elements with cla
 		   .attr("d", arc)     //this creates the actual SVG path using the associated data (pie) with the arc drawing function
 				.append("svg:title") //mouseover title showing the figures
 			   .text(function(d) { 
-				   console.log(d)
+				   //console.log(d)
 				   return d.data.categories + ": " + formatAsPercentage(d.data.measure); });			
 
 	d3.selectAll("g.slice").selectAll("path").transition()
